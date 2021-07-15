@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title></title>
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+ <link rel="stylesheet" href="{{ url_for('static',    filename='css/s.css') }}">
+ 
+</head>
+<body style="background-color: aquamarine;">
+    <h1 style="position: relative;left: 630px;">PACKING LIST</h1>
+    <div class="boxed" >
+        <div class="form">
+            <input name="file" id="file" ref="fileInput" type="file" multiple  onchange="getfilename()">
+            <div>     
+                </form>   
+                   Drag and Drop or
+                <button class="btn bg-color-white btn-primary px-4 py-3">Browse</button></div>
+            <span id="fileName" class="text-primary ">
+            </span>
+         </div>
+
+<script>
+
+  
+  function getfilename(){
+      
+    var input = document.getElementById('file');
+    var output = document.getElementById('fileName');
+    var fname = new Array();
+    for (var i = 0; i < input.files.length; ++i) {
+        
+        fname.push(input.files.item(i).name)
+        
+    }
+    output.innerHTML = '<ul>'+fname+'</ul>';
+
+    var result=fname
+    
+    
+    fetch('/tt?value=' + result)
+            
+
+            .then((response) => response.text())
+            
+            .then((html) => { window.open('', '', '').document.write(html);})           
+    }
+
+</script>
+</body>
+</html>
+
+
+
+
+
+    
